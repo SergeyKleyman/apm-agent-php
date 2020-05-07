@@ -55,7 +55,7 @@ void replaceCharInStringView( StringView strView, char originalChar, char replac
 }
 
 static inline
-StringView stringToStringView( String str )
+StringView stringToView( String str )
 {
     ELASTICAPM_ASSERT_VALID_STRING( str );
 

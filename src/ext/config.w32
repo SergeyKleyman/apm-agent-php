@@ -13,6 +13,7 @@ if (PHP_ELASTICAPM != 'no') {
 	    && CHECK_LIB("normaliz.lib", "elasticapm", PHP_ELASTICAPM)
     ) {
         ELASTICAPM_PHP_EXT_SOURCES =
+            "AST_instrumentation.c" + " " +
             "ConfigManager.c" + " " +
             "elasticapm.c" + " " +
             "elasticapm_API.c" + " " +

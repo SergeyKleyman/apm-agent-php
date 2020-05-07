@@ -79,6 +79,7 @@ if test "$PHP_ELASTICAPM" != "no"; then
   AC_DEFINE(HAVE_ELASTICAPM, 1, [ Have elasticapm support ])
 
   ELASTICAPM_PHP_EXT_SOURCES="\
+    AST_instrumentation.c \
     ConfigManager.c \
     elasticapm.c \
     elasticapm_API.c \

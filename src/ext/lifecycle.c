@@ -29,6 +29,7 @@
 #include "supportability.h"
 #include "elasticapm_alloc.h"
 #include "elasticapm_API.h"
+#include "AST_instrumentation.h"
 
 static const char JSON_METADATA[] =
         "{\"metadata\":{\"process\":{\"pid\":%d},\"service\":{\"name\":\"%s\",\"language\":{\"name\":\"php\"},\"agent\":{\"version\":\"%s\",\"name\":\"php\"}}}}\n";
@@ -112,6 +113,8 @@ void elasticApmModuleInit( int type, int moduleNumber )
     }
     tracer->curlInited = true;
 
+    // astInstrumentationInit();
+
     resultCode = resultSuccess;
     ELASTICAPM_LOG_DEBUG_FUNCTION_EXIT();
 
@@ -143,6 +146,8 @@ void elasticApmModuleShutdown( int type, int moduleNumber )
         ELASTICAPM_LOG_DEBUG_FUNCTION_EXIT_MSG( "Because extension is not enabled" );
         goto finally;
     }
+
+    // astInstrumentationShutdown();
 
     if ( tracer->curlInited )
     {
@@ -289,6 +294,8 @@ void elasticApmRequestInit()
 
     ELASTICAPM_CALL_IF_FAILED_GOTO( bootstrapPhpPart( config ) );
 
+    astInstrumentationInit();
+
     readSystemMetrics( &tracer->startSystemMetricsReading );
 
     resultCode = resultSuccess;
@@ -351,6 +358,8 @@ void elasticApmRequestShutdown()
         ELASTICAPM_LOG_TRACE_FUNCTION_EXIT_MSG( "Extension is not initialized" );
         goto finally;
     }
+
+    astInstrumentationShutdown();
 
     shutdownPhpPart( config );
 
