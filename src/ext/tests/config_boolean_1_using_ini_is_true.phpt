@@ -6,14 +6,18 @@ Boolean configuration option value 1 (in this case using ini file) should be int
 ELASTIC_APM_LOG_LEVEL_STDERR=CRITICAL
 --INI--
 elastic_apm.enabled=1
+elastic_apm.process_ast_to_instrument=1
 --FILE--
 <?php
 declare(strict_types=1);
 require __DIR__ . '/../tests_util/tests_util.php';
 
-elasticApmAssertSame("ini_get('elastic_apm.enabled')", ini_get('elastic_apm.enabled'), '1');
+$expectedVal = true;
 
-elasticApmAssertSame("elastic_apm_get_config_option_by_name('enabled')", elastic_apm_get_config_option_by_name('enabled'), true);
+elasticApmAssertBoolOptionValueSetViaIni('enabled', $expectedVal);
+elasticApmAssertSame("elastic_apm_is_enabled()", elastic_apm_is_enabled(), $expectedVal);
+
+elasticApmAssertBoolOptionValueSetViaIni('process_ast_to_instrument', $expectedVal);
 
 echo 'Test completed'
 ?>

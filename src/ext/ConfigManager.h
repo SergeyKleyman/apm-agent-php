@@ -89,6 +89,7 @@ enum OptionId
     #if ( ELASTIC_APM_MEMORY_TRACKING_ENABLED_01 != 0 )
     optionId_memoryTrackingLevel,
     #endif
+    optionId_processAstToInstrument,
     optionId_profilingInferredSpansEnabled,
     optionId_sanitizeFieldNames,
     optionId_secretToken,
@@ -142,6 +143,7 @@ struct ConfigSnapshot
         #if ( ELASTIC_APM_MEMORY_TRACKING_ENABLED_01 != 0 )
     MemoryTrackingLevel memoryTrackingLevel;
         #endif
+    bool processAstToInstrument;
     bool profilingInferredSpansEnabled;
     String sanitizeFieldNames;
     String secretToken;
@@ -270,6 +272,7 @@ const ConfigSnapshot* getGlobalCurrentConfigSnapshot();
 #   if ( ELASTIC_APM_MEMORY_TRACKING_ENABLED_01 != 0 )
 #define ELASTIC_APM_CFG_OPT_NAME_MEMORY_TRACKING_LEVEL "memory_tracking_level"
 #   endif
+#define ELASTIC_APM_CFG_OPT_NAME_PROCESS_AST_TO_INSTRUMENT "process_ast_to_instrument"
 #define ELASTIC_APM_CFG_OPT_NAME_PROFILING_INFERRED_SPANS_ENABLED "profiling_inferred_spans_enabled"
 #define ELASTIC_APM_CFG_OPT_NAME_SANITIZE_FIELD_NAMES "sanitize_field_names"
 #define ELASTIC_APM_CFG_OPT_NAME_SECRET_TOKEN "secret_token"

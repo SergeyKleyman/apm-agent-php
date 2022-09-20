@@ -5,14 +5,19 @@ Boolean configuration option value 'OFF' (in this case using environment variabl
 --ENV--
 ELASTIC_APM_LOG_LEVEL_STDERR=CRITICAL
 ELASTIC_APM_ENABLED=OFF
+ELASTIC_APM_PROCESS_AST_TO_INSTRUMENT=OFF
 --FILE--
 <?php
 declare(strict_types=1);
 require __DIR__ . '/../tests_util/tests_util.php';
 
-elasticApmAssertSame("getenv('ELASTIC_APM_ENABLED')", getenv('ELASTIC_APM_ENABLED'), 'OFF');
+$rawVal='OFF';
+$expectedVal = false;
 
-elasticApmAssertSame("elastic_apm_is_enabled()", elastic_apm_is_enabled(), false);
+elasticApmAssertBoolOptionValueSetViaEnvVar('enabled', $rawVal, $expectedVal);
+elasticApmAssertSame('elastic_apm_is_enabled()', elastic_apm_is_enabled(), $expectedVal);
+
+elasticApmAssertBoolOptionValueSetViaEnvVar('process_ast_to_instrument', $rawVal, $expectedVal);
 
 echo 'Test completed'
 ?>
