@@ -25,7 +25,9 @@ error_reporting(E_ALL | E_STRICT);
 
 function elasticApmOnAssertFailure(string $condDesc, string $expr, $actual, $expected)
 {
-    if ( $expected === $actual ) return;
+    if ($expected === $actual) {
+        return;
+    }
 
     $indent = "\t\t\t\t\t\t";
     echo "========================================\n";
@@ -40,11 +42,11 @@ function elasticApmOnAssertFailure(string $condDesc, string $expr, $actual, $exp
     echo "\n";
     echo "Expected value:\n";
     echo "\n$indent";
-    var_dump( $expected );
+    var_dump($expected);
     echo "\n";
     echo "Actual value:\n";
     echo "\n$indent";
-    var_dump( $actual );
+    var_dump($actual);
     echo "\n";
     echo "===\n";
     echo "====================\n";
@@ -52,16 +54,20 @@ function elasticApmOnAssertFailure(string $condDesc, string $expr, $actual, $exp
     die();
 }
 
-function elasticApmAssertSame(string $expr, $actual, $expected)
+function elasticApmAssertSame(string $expr, $actual, $expected): void
 {
-    if ( $expected === $actual ) return;
+    if ($expected === $actual) {
+        return;
+    }
 
     elasticApmOnAssertFailure("the same", $expr, $actual, $expected);
 }
 
-function elasticApmAssertEqual(string $expr, $actual, $expected)
+function elasticApmAssertEqual(string $expr, $actual, $expected): void
 {
-    if ( $expected == $actual ) return;
+    if ($expected == $actual) {
+        return;
+    }
 
     elasticApmOnAssertFailure("equal", $expr, $actual, $expected);
 }
@@ -69,6 +75,32 @@ function elasticApmAssertEqual(string $expr, $actual, $expected)
 function elasticApmIsOsWindows(): bool
 {
     return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+}
+
+function elasticApmAssertBoolOptionValueSetViaIni(string $optName, bool $expectedVal): void
+{
+    $iniName = 'elastic_apm.' . $optName;
+    elasticApmAssertEqual("ini_get('$iniName')", ini_get($iniName), $expectedVal);
+
+    /** @noinspection PhpUndefinedFunctionInspection */
+    elasticApmAssertSame(
+        "elastic_apm_get_config_option_by_name('$optName')",
+        elastic_apm_get_config_option_by_name($optName),
+        $expectedVal
+    );
+}
+
+function elasticApmAssertBoolOptionValueSetViaEnvVar(string $optName, string $rawVal, bool $expectedVal): void
+{
+    $envVarName = 'ELASTIC_APM_' . strtoupper($optName);
+    elasticApmAssertSame("getenv('$envVarName')", getenv($envVarName), $rawVal);
+
+    /** @noinspection PhpUndefinedFunctionInspection */
+    elasticApmAssertSame(
+        "elastic_apm_get_config_option_by_name('$optName')",
+        elastic_apm_get_config_option_by_name($optName),
+        $expectedVal
+    );
 }
 
 elasticApmAssertSame("getenv('ELASTIC_APM_LOG_LEVEL_STDERR')", getenv('ELASTIC_APM_LOG_LEVEL_STDERR'), 'CRITICAL');

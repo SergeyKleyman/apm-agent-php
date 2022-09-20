@@ -6,14 +6,18 @@ Boolean configuration option value 'OFF' (in this case using ini file) should be
 ELASTIC_APM_LOG_LEVEL_STDERR=CRITICAL
 --INI--
 elastic_apm.enabled=OFF
+elastic_apm.process_ast_to_instrument=OFF
 --FILE--
 <?php
 declare(strict_types=1);
 require __DIR__ . '/../tests_util/tests_util.php';
 
-elasticApmAssertEqual("ini_get('elastic_apm.enabled')", ini_get('elastic_apm.enabled'), false);
+$expectedVal = false;
 
-elasticApmAssertSame("elastic_apm_is_enabled()", elastic_apm_is_enabled(), false);
+elasticApmAssertBoolOptionValueSetViaIni('enabled', $expectedVal);
+elasticApmAssertSame("elastic_apm_is_enabled()", elastic_apm_is_enabled(), $expectedVal);
+
+elasticApmAssertBoolOptionValueSetViaIni('process_ast_to_instrument', $expectedVal);
 
 echo 'Test completed'
 ?>
