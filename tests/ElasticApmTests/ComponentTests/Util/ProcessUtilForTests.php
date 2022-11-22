@@ -86,6 +86,7 @@ final class ProcessUtilForTests
      * @param string                $cmd
      * @param array<string, string> $envVars
      * @param bool                  $shouldCaptureStdOutErr
+     * @param ?int                  $expectedExitCode
      *
      * @return int
      */

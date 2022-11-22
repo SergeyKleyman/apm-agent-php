@@ -12,13 +12,14 @@ elastic_apm.bootstrap_php_part_file=../bootstrap_php_part.php
 --FILE--
 <?php
 declare(strict_types=1);
-require __DIR__ . '/../tests_util/tests_util.php';
+require __DIR__ . '/../included_in_all_tests.php';
 
 // assert_level is not set in ini so it falls back on env vars
 elasticApmAssertSame("elastic_apm_get_config_option_by_name('assert_level')", elastic_apm_get_config_option_by_name('assert_level'), ELASTIC_APM_ASSERT_LEVEL_O_N);
 elasticApmAssertSame("getenv('ELASTIC_APM_ASSERT_LEVEL')", getenv('ELASTIC_APM_ASSERT_LEVEL'), 'O_n');
 
-// memory_tracking_level is set in ini but the value is invalid so it falls back on default (which is `ELASTIC_APM_MEMORY_TRACKING_LEVEL_NOT_SET) and not the value set by env vars (which is ELASTIC_APM_MEMORY_TRACKING_LEVEL_ALL)
+// memory_tracking_level is set in ini but the value is invalid so it falls back on default
+// which is `ELASTIC_APM_MEMORY_TRACKING_LEVEL_NOT_SET) and not the value set by env vars (which is ELASTIC_APM_MEMORY_TRACKING_LEVEL_ALL
 elasticApmAssertSame("elastic_apm_get_config_option_by_name('memory_tracking_level')", elastic_apm_get_config_option_by_name('memory_tracking_level'), ELASTIC_APM_MEMORY_TRACKING_LEVEL_NOT_SET);
 elasticApmAssertSame("getenv('ELASTIC_APM_MEMORY_TRACKING_LEVEL')", getenv('ELASTIC_APM_MEMORY_TRACKING_LEVEL'), 'ALL');
 

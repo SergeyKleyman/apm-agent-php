@@ -159,6 +159,11 @@ abstract class TestInfraHttpServerProcessBase extends SpawnedProcessBase
         $this->reactLoop->run();
     }
 
+    /**
+     * This PHPDoc is used only to simulate override keyword from other languages
+     *
+     * @return void
+     */
     protected function beforeLoopRun(): void
     {
     }

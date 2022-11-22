@@ -8,7 +8,7 @@ elastic_apm.bootstrap_php_part_file=../bootstrap_php_part.php
 --FILE--
 <?php
 declare(strict_types=1);
-require __DIR__ . '/../tests_util/tests_util.php';
+require __DIR__ . '/../included_in_all_tests.php';
 
 elasticApmAssertSame("getenv('ELASTIC_APM_ENABLED')", getenv('ELASTIC_APM_ENABLED'), 'yEs');
 

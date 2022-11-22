@@ -44,7 +44,21 @@
 #define ELASTIC_APM_CURRENT_LOG_CATEGORY ELASTIC_APM_LOG_CATEGORY_LIFECYCLE
 
 static const char JSON_METRICSET[] =
-        "{\"metricset\":{\"samples\":{\"system.cpu.total.norm.pct\":{\"value\":%.2f},\"system.process.cpu.total.norm.pct\":{\"value\":%.2f},\"system.memory.actual.free\":{\"value\":%"PRIu64"},\"system.memory.total\":{\"value\":%"PRIu64"},\"system.process.memory.size\":{\"value\":%"PRIu64"},\"system.process.memory.rss.bytes\":{\"value\":%"PRIu64"}},\"timestamp\":%"PRIu64"}}\n";
+        "{"
+            "\"metricset\":"
+                "{"
+                    "\"samples\":"
+                        "{"
+                            "\"system.cpu.total.norm.pct\":{\"value\":%.2f}"
+                            ",\"system.process.cpu.total.norm.pct\":{\"value\":%.2f}"
+                            ",\"system.memory.actual.free\":{\"value\":%"PRIu64"}"
+                            ",\"system.memory.total\":{\"value\":%"PRIu64"}"
+                            ",\"system.process.memory.size\":{\"value\":%"PRIu64"}"
+                            ",\"system.process.memory.rss.bytes\":{\"value\":%"PRIu64"}"
+                        "}"
+                    ",\"timestamp\":%"PRIu64
+                "}"
+        "}\n";
 
 static
 String buildSupportabilityInfo( size_t supportInfoBufferSize, char* supportInfoBuffer )

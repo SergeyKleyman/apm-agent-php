@@ -510,7 +510,8 @@ ResultCode replaceSleepWithResumingAfterSignalImpl()
     ELASTIC_APM_CALL_IF_FAILED_GOTO( elasticApmInterceptCallsToInternalFunctionEx( "sleep", &sleep_resuming_after_interruption_interceptRegistrationId, sleep_resuming_after_interruption ) );
     ELASTIC_APM_CALL_IF_FAILED_GOTO( elasticApmInterceptCallsToInternalFunctionEx( "usleep", &usleep_resuming_after_interruption_interceptRegistrationId, usleep_resuming_after_interruption ) );
     #if HAVE_NANOSLEEP
-    ELASTIC_APM_CALL_IF_FAILED_GOTO( elasticApmInterceptCallsToInternalFunctionEx( "time_nanosleep", &time_nanosleep_resuming_after_interruption_interceptRegistrationId, time_nanosleep_resuming_after_interruption ) );
+    ELASTIC_APM_CALL_IF_FAILED_GOTO(
+        elasticApmInterceptCallsToInternalFunctionEx( "time_nanosleep", &time_nanosleep_resuming_after_interruption_interceptRegistrationId, time_nanosleep_resuming_after_interruption ) );
     #endif // #if HAVE_NANOSLEEP
 
     resultCode = resultSuccess;

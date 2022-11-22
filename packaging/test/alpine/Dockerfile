@@ -26,8 +26,8 @@ COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 # Disable agent for auxiliary PHP processes to reduce noise in logs
 ENV ELASTIC_APM_ENABLED=false
 
-ENV VERSION=
-ENV GITHUB_RELEASES_URL=
+ENV VERSION=""
+ENV GITHUB_RELEASES_URL=""
 COPY entrypoint.sh /bin
 WORKDIR /app
 

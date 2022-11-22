@@ -265,3 +265,15 @@ indent_style = tab
 [Jenkinsfile]
 indent_size = 2
 indent_style = space
+
+[tests/tools/syslog_clearer/alpine/logrotate_config.txt]
+indent_style = tab
+
+[tests/tools/syslog_clearer/centos/logrotate_config.txt]
+indent_style = tab
+
+[tests/tools/syslog_clearer/debian/logrotate_config.txt]
+indent_style = tab
+
+[tests/tools/syslog_clearer/ubuntu/logrotate_config.txt]
+indent_style = tab

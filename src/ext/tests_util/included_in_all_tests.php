@@ -1,3 +1,5 @@
+<?php
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -17,17 +19,10 @@
  * under the License.
  */
 
-#pragma once
+declare(strict_types=1);
 
-#include "ResultCode.h"
-#include "ConfigManager.h"
+error_reporting(E_ALL | E_STRICT);
 
-ResultCode bootstrapTracerPhpPart( const ConfigSnapshot* config, const TimePoint* requestInitStartTime );
+require __DIR__ . 'tests_util.php';
 
-void shutdownTracerPhpPart( const ConfigSnapshot* config );
-
-bool tracerPhpPartInterceptedCallPreHook( uint32_t interceptRegistrationId, zend_execute_data* execute_data );
-
-void tracerPhpPartInterceptedCallPostHook( uint32_t dbgInterceptRegistrationId, zval* interceptedCallRetValOrThrown );
-
-void tracerPhpPartInterceptedCallEmptyMethod();
+sharedChecks();

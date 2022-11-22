@@ -39,13 +39,16 @@ final class StacktraceDeserializer
     public static function deserialize($value): array
     {
         $deserializedRawData = DeserializationUtil::assertDecodedJsonMap($value);
-        /** @var StackTraceFrame[] */
+        /** @var StackTraceFrame[] $frames */
         $frames = [];
         /** @var int */
         $nextExpectedIndex = 0;
 
         TestCase::assertIsArray($deserializedRawData);
-        /** @var array<mixed, mixed> $deserializedRawData */
+        /**
+         * @var array<mixed, mixed> $deserializedRawData
+         * @noinspection PhpRedundantVariableDocTypeInspection
+         */
 
         foreach ($deserializedRawData as $key => $value) {
             TestCase::assertSame($nextExpectedIndex, $key);

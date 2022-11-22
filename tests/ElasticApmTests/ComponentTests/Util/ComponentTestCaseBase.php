@@ -115,6 +115,7 @@ class ComponentTestCaseBase extends TestCaseBase
     }
 
     /**
+     * @param string               $argKey
      * @param array<string, mixed> $argsMap
      *
      * @return bool

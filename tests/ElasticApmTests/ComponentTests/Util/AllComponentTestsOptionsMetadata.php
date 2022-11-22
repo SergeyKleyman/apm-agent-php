@@ -60,7 +60,7 @@ final class AllComponentTestsOptionsMetadata
             return self::$vaLue;
         }
 
-        /** @var array<string, OptionMetadata<mixed>> */
+        /** @var array<string, OptionMetadata<mixed>> $optNameToMeta */
         $optNameToMeta = [
             self::APP_CODE_HOST_KIND_OPTION_NAME => new NullableAppCodeHostKindOptionMetadata(),
             'app_code_php_exe' => new NullableStringOptionMetadata(),

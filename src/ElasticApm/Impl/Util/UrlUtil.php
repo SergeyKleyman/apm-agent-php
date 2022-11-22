@@ -123,10 +123,10 @@ final class UrlUtil
 
     public static function defaultPortForScheme(string $scheme): ?int
     {
-        if (strcasecmp($scheme, 'http') === 0) {
+        if (strcasecmp($scheme, 'http') == 0) {
             return 80;
         }
-        if (strcasecmp($scheme, 'https') === 0) {
+        if (strcasecmp($scheme, 'https') == 0) {
             return 443;
         }
 

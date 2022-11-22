@@ -57,9 +57,9 @@ class DistributedTracingTest extends TracerUnitTestCaseBase
         string $type,
         $distTracingData
     ): TransactionInterface {
-        /** @var ?string */
+        /** @var ?string $serializedDistTracingData */
         $serializedDistTracingData = null;
-        /** @var ?array<string, string> */
+        /** @var ?array<string, string> $distTracingHeaders */
         $distTracingHeaders = null;
         if ($distTracingData !== null && $shouldUseDeprecatedApi) {
             self::assertIsString($distTracingData);
@@ -544,10 +544,10 @@ class DistributedTracingTest extends TracerUnitTestCaseBase
 
         // Act
 
-        /** @var ?TransactionInterface */
+        /** @var ?TransactionInterface $webFrontTx */
         $webFrontTx = null;
 
-        /** @var array<string, string> */
+        /** @var array<string, string> $distTracingData */
         $distTracingData = [];
 
         if ($doesTxHaveParentAlready) {

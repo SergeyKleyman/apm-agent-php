@@ -40,10 +40,9 @@ abstract class OptionParser implements LoggableInterface
     /**
      * @param string $rawValue
      *
-     * @return mixed
-     * @throws ParseException
+     * @return T
      *
-     * @phpstan-return T
+     * @throws ParseException
      */
     abstract public function parse(string $rawValue);
 }

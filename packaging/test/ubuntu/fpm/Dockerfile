@@ -48,8 +48,8 @@ RUN update-alternatives --set php /usr/bin/php${PHP_VERSION} \
 ENV ELASTIC_APM_ENABLED=false
 
 ENV TYPE=deb
-ENV VERSION=
-ENV GITHUB_RELEASES_URL=
+ENV VERSION=""
+ENV GITHUB_RELEASES_URL=""
 WORKDIR /app
 
 ENTRYPOINT ["/bin/entrypoint.sh"]

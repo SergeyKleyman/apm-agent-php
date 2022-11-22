@@ -88,13 +88,14 @@
 #ifdef _MSC_VER // Microsoft compilers
 
 #   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER_AUGMENTER( ... ) unusedPPToken, __VA_ARGS__
-#   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( dummyArg_1, dummyArg_2, dummyArg_3, dummyArg_4, dummyArg_5, dummyArg_6, dummyArg_7, dummyArg_8, dummyArg_9, dummyArg_10, dummyArg_11, count, ... ) count
+#   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( dummyArg_1,dummyArg_2,dummyArg_3,dummyArg_4,dummyArg_5,dummyArg_6,dummyArg_7,dummyArg_8,dummyArg_9,dummyArg_10,dummyArg_11,count,...) count
 #   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER_EXPAND_ARGS( ... ) ELASTIC_APM_PP_EXPAND( ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( __VA_ARGS__, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ) )
 #   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT( ... ) ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER_EXPAND_ARGS( ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER_AUGMENTER( __VA_ARGS__ ) )
 
 #else // Non-Microsoft compilers
 
-#   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( dummyArg_0, dummyArg_1, dummyArg_2, dummyArg_3, dummyArg_4, dummyArg_5, dummyArg_6, dummyArg_7, dummyArg_8, dummyArg_9, dummyArg_10, dummyArg_11, count, ... ) count
+#   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( dummyArg_0,dummyArg_1,dummyArg_2,dummyArg_3,dummyArg_4,dummyArg_5,dummyArg_6,dummyArg_7,dummyArg_8,dummyArg_9,dummyArg_10,dummyArg_11,count,...) \
+        count
 #   define ELASTIC_APM_PP_VARIADIC_ARGS_COUNT( ... ) ELASTIC_APM_PP_VARIADIC_ARGS_COUNT_HELPER( 0, ## __VA_ARGS__, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 )
 
 #endif

@@ -54,13 +54,7 @@ final class DurationOptionParser extends OptionParser
         $this->defaultUnits = $defaultUnits;
     }
 
-    /**
-     * @param string $rawValue
-     *
-     * @return mixed
-     *
-     * @phpstan-return float
-     */
+    /** @inheritDoc */
     public function parse(string $rawValue)
     {
         $partWithoutSuffix = '';

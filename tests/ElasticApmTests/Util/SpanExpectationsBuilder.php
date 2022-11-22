@@ -43,12 +43,6 @@ class SpanExpectationsBuilder extends ExpectationsBuilderBase
         return $result;
     }
 
-    /**
-     * @param string $className
-     * @param string $methodName
-     *
-     * @return SpanExpectations
-     */
     public function fromClassMethodNames(
         string $className,
         string $methodName,
@@ -61,11 +55,6 @@ class SpanExpectationsBuilder extends ExpectationsBuilderBase
         return $result;
     }
 
-    /**
-     * @param string $funcName
-     *
-     * @return SpanExpectations
-     */
     public function fromFuncName(string $funcName): SpanExpectations
     {
         $result = $this->startNew();

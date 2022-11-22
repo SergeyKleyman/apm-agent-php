@@ -30,8 +30,8 @@ COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 ENV ELASTIC_APM_ENABLED=false
 
 ENV TYPE=deb
-ENV VERSION=
-ENV GITHUB_RELEASES_URL=
+ENV VERSION=""
+ENV GITHUB_RELEASES_URL=""
 COPY entrypoint.sh /bin
 WORKDIR /app
 

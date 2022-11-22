@@ -53,7 +53,7 @@ trait AssertValidTrait
     /**
      * @param mixed $stringValue
      * @param bool  $isNullable
-     * @param int   $maxLength
+     * @param ?int  $maxLength
      *
      * @return ?string
      */

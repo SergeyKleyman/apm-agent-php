@@ -1,4 +1,3 @@
-
 SHELL=/bin/bash -o pipefail
 IMAGE := test-php
 PHP_VERSION ?= 7.2

@@ -71,7 +71,10 @@ final class Parser
     public function parse(array $optNameToMeta, RawSnapshotInterface $rawSnapshot): array
     {
         $optNameToParsedValue = [];
-        /** @var OptionMetadata<mixed> $optMeta */
+        /**
+         * @var OptionMetadata<mixed> $optMeta
+         * @noinspection PhpRedundantVariableDocTypeInspection
+         */
         foreach ($optNameToMeta as $optName => $optMeta) {
             $rawValue = $rawSnapshot->valueFor($optName);
             if ($rawValue === null) {

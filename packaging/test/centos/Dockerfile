@@ -17,7 +17,7 @@ RUN yum update -y \
 ## Package versioning for the PHP does not use .
 RUN export PHP_VERSION_TRANSFORMED=$(echo "${PHP_VERSION}" | sed 's#\.##g') \
     && yum install -y epel-release yum-utils \
-    && rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+    && rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
     && yum update -y \
     && yum-config-manager --enable remi-php${PHP_VERSION_TRANSFORMED} \
     && yum install -y \
@@ -38,8 +38,8 @@ ENV ELASTIC_APM_ENABLED=false
 
 # To support tar and rpm packages
 ENV TYPE=rpm
-ENV VERSION=
-ENV GITHUB_RELEASES_URL=
+ENV VERSION=""
+ENV GITHUB_RELEASES_URL=""
 COPY entrypoint.sh /bin
 WORKDIR /app
 

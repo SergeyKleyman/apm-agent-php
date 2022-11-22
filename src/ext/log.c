@@ -35,9 +35,15 @@
 #define ELASTIC_APM_CURRENT_LOG_CATEGORY ELASTIC_APM_LOG_CATEGORY_LOG
 
 String logLevelNames[numberOfLogLevels] =
-        {
-                [logLevel_off] = "OFF", [logLevel_critical] = "CRITICAL", [logLevel_error] = "ERROR", [logLevel_warning] = "WARNING", [logLevel_info] = "INFO", [logLevel_debug] = "DEBUG", [logLevel_trace] = "TRACE"
-        };
+{
+    [logLevel_off] = "OFF"
+    , [logLevel_critical] = "CRITICAL"
+    , [logLevel_error] = "ERROR"
+    , [logLevel_warning] = "WARNING"
+    , [logLevel_info] = "INFO"
+    , [logLevel_debug] = "DEBUG"
+    , [logLevel_trace] = "TRACE"
+};
 
 const char* logLevelToName( LogLevel level )
 {
@@ -54,9 +60,9 @@ enum
     loggerMessageBufferSize = 1000 * 1000 + 1
 };
 
-// 2020-02-15 21:51:32.123456+02:00 [ERROR]    [Ext-Infra]     [lifecycle.c:482] [sendEventsToApmServer] Couldn't connect to server blah blah blah blah blah blah blah blah | PID: 12345 | TID: 67890
-// 2020-02-15 21:51:32.123456+02:00 [WARNING]  [Configuration] [ConfigManager.c:45] [constructSnapshotUsingDefaults] Not found blah blah blah blah blah blah blah blah | PID: 12345 | TID: 67890
-// 2020-02-15 21:51:32.123456+02:00 [CRITICAL] [PHP-Bootstrap] [BootstrapShutdownHelper.php:123] [constructSnapshotUsingDefaults] Send failed. Error message: Couldn't connect to server. server_url: `http://localhost:8200' | PID: 123 | TID: 345
+// 2020-02-15 21:51:32.123456+02:00 [ERROR]    [Ext-Infra]     [lifecycle.c:482] [sendEventsToApmServer] Couldn't connect to server blah blah blah blah blah blah blah blah
+// 2020-02-15 21:51:32.123456+02:00 [WARNING]  [Configuration] [ConfigManager.c:45] [constructSnapshotUsingDefaults] Not found blah blah blah blah blah blah blah blah
+// 2020-02-15 21:51:32.123456+02:00 [CRITICAL] [PHP-Bootstrap] [BootstrapShutdownHelper.php:123] [constructSnapshotUsingDefaults] Send failed
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^ ^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^                                ^          ^               ^                                 ^                                ^
 // ^                                ^          ^               ^                                 ^                                Message text
@@ -68,7 +74,7 @@ enum
 
 // 2020-02-15 21:51:32.123456+02:00 | ERROR    | 12345:67890 | lifecycle.c:482                     | sendEventsToApmServer          | Couldn't connect to server blah blah blah blah blah blah blah blah
 // 2020-02-15 21:51:32.123456+02:00 | WARNING  | 12345:67890 | ConfigManager.c:45                  | constructSnapshotUsingDefaults | Not found blah blah blah blah blah blah blah blah
-// 2020-02-15 21:51:32.123456+02:00 | CRITICAL |   345:  345 | BootstrapShutdownHelper.php:123     | constructSnapshotUsingDefaults | Send failed. Error message: Couldn't connect to server. server_url: `http://localhost:8200'
+// 2020-02-15 21:51:32.123456+02:00 | CRITICAL |   345:  345 | BootstrapShutdownHelper.php:123     | constructSnapshotUsingDefaults | Send failed
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^   ^^^^^ ^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^                                  ^          ^     ^       ^                                     ^                                ^
 // ^                                  ^          ^     ^       ^                                     ^                                Message text
@@ -187,7 +193,7 @@ StringView buildCommonPrefix(
         , size_t bufferSize
 )
 {
-    // 2020-05-08 08:18:54.154244+02:00 [PID:12345] [TID:12345] [DEBUG]    [Configuration] [ConfigManager.c:1127] [ensureConfigManagerHasLatestConfig] Current configuration is already the latest [TransactionId: xyz] [namespace: Impl\AutoInstrument]
+    // 2020-05-08 08:18:54.154244+02:00 [PID:12345] [TID:12345] [DEBUG]    [Configuration] [ConfigManager.c:1127] [ensureConfigManagerHasLatestConfig] Current configuration is already the latest
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     TextOutputStream txtOutStream = makeTextOutputStream( buffer, bufferSize );

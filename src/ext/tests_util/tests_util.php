@@ -21,8 +21,6 @@
 
 declare(strict_types=1);
 
-error_reporting(E_ALL | E_STRICT);
-
 function elasticApmOnAssertFailure(string $condDesc, string $expr, $actual, $expected)
 {
     if ($expected === $actual) {
@@ -106,5 +104,3 @@ function sharedChecks(): void
         $expected_bootstrap_php_part_file
     );
 }
-
-sharedChecks();

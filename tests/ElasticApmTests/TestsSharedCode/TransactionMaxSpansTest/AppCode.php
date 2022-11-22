@@ -153,11 +153,10 @@ final class AppCode implements LoggableInterface
     private function createSpan(): void
     {
         ++$this->numberOfSpansCreated;
-        /** @noinspection PhpExpressionResultUnusedInspection */
         ++$this->topSpanInfo()->childCount;
-        /** @var ExecutionSegmentInterface */
+        /** @var ExecutionSegmentInterface $topExecSegment */
         $topExecSegment = ($this->actualSpansDepth() === 0) ? $this->tx : $this->topSpanInfo()->span;
-        /** @var ExecutionSegmentContextInterface */
+        /** @var ExecutionSegmentContextInterface $context */
         $context = $topExecSegment->context(); // @phpstan-ignore-line
         $context->setLabel(self::NUMBER_OF_CHILD_SPANS_LABEL_KEY, $this->topSpanInfo()->childCount);
         $spanName = $this->topSpanInfo()->name . '_' . $this->topSpanInfo()->childCount;

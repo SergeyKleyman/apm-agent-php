@@ -96,7 +96,7 @@ final class WildcardMatcher
 
     private static function areStringsEqual(string $str1, string $str2, bool $isCaseSensitive): bool
     {
-        return $isCaseSensitive ? (strcmp($str1, $str2) === 0) : (strcasecmp($str1, $str2) === 0);
+        return $isCaseSensitive ? (strcmp($str1, $str2) == 0) : (strcasecmp($str1, $str2) == 0);
     }
 
     public function match(string $text): bool

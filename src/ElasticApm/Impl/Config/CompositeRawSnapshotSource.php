@@ -43,7 +43,7 @@ final class CompositeRawSnapshotSource implements RawSnapshotSourceInterface
 
     public function currentSnapshot(array $optionNameToMeta): RawSnapshotInterface
     {
-        /** @var array<RawSnapshotInterface> */
+        /** @var array<RawSnapshotInterface> $subSnapshots */
         $subSnapshots = [];
         foreach ($this->subSources as $subSource) {
             $subSnapshots[] = $subSource->currentSnapshot($optionNameToMeta);
