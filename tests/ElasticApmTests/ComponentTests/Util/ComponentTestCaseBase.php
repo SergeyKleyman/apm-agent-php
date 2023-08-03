@@ -296,7 +296,7 @@ class ComponentTestCaseBase extends TestCaseBase
      *
      * @return iterable<TKey, TValue>
      */
-    public function adaptKeyValueToSmoke(iterable $variants): iterable
+    public static function adaptKeyValueToSmoke(iterable $variants): iterable
     {
         if (!self::isSmoke()) {
             return $variants;
